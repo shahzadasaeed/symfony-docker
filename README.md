@@ -23,3 +23,7 @@ Imagine you are building a system that will allow a user to send SMS campaigns t
 1. There should be a way to retrieve historical campaigns with their contacts.
 1. Ensure that there are no pending PHPStan issues (run `vendor/bin/phpstan`).
 1. And most importantly, we don't want you to actually send any SMS 😅.
+
+
+## Questions?
+Feel free to reach out to [Sven Schneemann](mailto:sschneemann@unifonic.com)
