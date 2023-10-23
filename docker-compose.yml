@@ -19,6 +19,7 @@ services:
       # The two next lines can be removed after initial installation
       SYMFONY_VERSION: ${SYMFONY_VERSION:-}
       STABILITY: ${STABILITY:-stable}
+      MOCK_SMS_API: ${MOCK_SMS_API:-localhost:8585}
     volumes:
       - caddy_data:/data
       - caddy_config:/config
