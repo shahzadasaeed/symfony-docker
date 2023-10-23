@@ -2,7 +2,6 @@
 
 # Adapted from: https://gist.github.com/mdonkers/63e115cc0c79b4f6b8b3a6b797e485c7?permalink_comment_id=4241869#gistcomment-4241869
 
-from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 import sys
