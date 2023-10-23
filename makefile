@@ -1,6 +1,6 @@
 .PHONY: build
 build: ## Build images for symfony app and sms mock api
-	docker compose build && docker compose -f docker-compose.smsapi.yml build
+	docker compose build --no-cache && docker compose -f docker-compose.smsapi.yml build --no-cache
 
 .PHONY: start
 start: ## Start containers for symfony app and sms mock api
