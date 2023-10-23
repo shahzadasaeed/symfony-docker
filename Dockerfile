@@ -22,7 +22,11 @@ RUN apk add --no-cache \
 		file \
 		gettext \
 		git \
+		bash \
+		wget \
 	;
+
+RUN wget https://get.symfony.com/cli/installer -O - | bash;
 
 RUN set -eux; \
 	install-php-extensions \
