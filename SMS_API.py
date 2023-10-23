@@ -23,6 +23,12 @@ class S(BaseHTTPRequestHandler):
         self.end_headers()
 
 
+    def json_response(self, data, status_code=200):
+        self.send_response(status_code)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps(data).encode('utf-8'))
+
     def get_post_data(self):
         content_length = self.headers['Content-Length']
         content_length = 0 if (content_length is None) else int(content_length)
@@ -71,23 +77,12 @@ class S(BaseHTTPRequestHandler):
         if ALLOWED_PATHS[1] == self.path:
             recipients = post_data.get('recipients')
             if len(recipients) > 1000:
-                self.send_response(400)
-                self.send_header('Content-Type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({ "message": "Too many recipients. Maximum allowed is 1000." }).encode('utf-8'))
-                return
+                return self.json_response({ "message": "Too many recipients. Maximum allowed is 1000." }, 400)
             if not post_data.get('campaign_id'):
-                self.send_response(400)
-                self.send_header('Content-Type', 'application/json')
-                self.end_headers()
-                self.wfile.write(json.dumps({ "message": "Missing required fields: campaign_id" }).encode('utf-8'))
-                return
+                return self.json_response({ "message": "Missing required fields: campaign_id" }, 400)
             for contact in recipients:
                 contacts.append(self.validate_contact(contact).get('phone_number'))
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
-        self.wfile.write(json.dumps({ "message": "Sent an SMS with content '{}' to {}".format(message, ', '.join(contacts)) }).encode('utf-8'))
+        return self.json_response({ "message": "Sent an SMS with content '{}' to {}".format(message, ', '.join(contacts)) })
 
 
     def do_GET(self):
