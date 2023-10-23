@@ -26,6 +26,7 @@ Imagine you are building a system that will allow a user to send SMS campaigns t
 1. Ensure that there are no pending PHPStan issues (run `vendor/bin/phpstan`).
 1. And most importantly, we don't want you to actually send any SMS 😅.
 
+#### HINT: Also think about how to handle potential duplicate values - within the same list of contacts for a campaign, but also across different campaigns.
 
 ## Questions?
 Feel free to reach out to [Sven Schneemann](mailto:sschneemann@unifonic.com)
