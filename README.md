@@ -26,8 +26,8 @@ Imagine you are building a system that will allow a user to send SMS campaigns t
 1. Ensure that there are no pending PHPStan issues (run `vendor/bin/phpstan`).
 1. And most importantly, we don't want you to actually send any SMS 😅.
     - Instead, this project ships with a mock SMS API service, which runs on localhost, port "8585". It provides two endpoints: "/send" and "/bulk" (both accept only JSON).
-    - "/send": Takes a "message" and a "phone_number" field.
-    - "/bulk": Takes a "campaign_id", a "message" and a collection of "recipients", where each "recipient" entry has a "phone_number" field.
+    - "/send": Takes a `message` and a `phone_number` field.
+    - "/bulk": Takes a `campaign_id`, a `message` and a collection of `recipients`, where each entry has a `phone_number` field.
     - [See more details below](#mock-service-details)
 
 #### HINT: Also think about how to handle potential duplicate values - within the same list of contacts for a campaign, but also across different campaigns.
