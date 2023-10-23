@@ -76,6 +76,12 @@ class S(BaseHTTPRequestHandler):
                 self.end_headers()
                 self.wfile.write(json.dumps({ "message": "Too many recipients. Maximum allowed is 1000." }).encode('utf-8'))
                 return
+            if not post_data.get('campaign_id'):
+                self.send_response(400)
+                self.send_header('Content-Type', 'application/json')
+                self.end_headers()
+                self.wfile.write(json.dumps({ "message": "Missing required fields: campaign_id" }).encode('utf-8'))
+                return
             for contact in recipients:
                 contacts.append(self.validate_contact(contact).get('phone_number'))
         self.send_response(200)
