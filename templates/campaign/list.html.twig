@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Campaign List{% endblock %}
+
+{% block body %}
+<div class="container">
+        <h2 class="text-center mt-5 mb-3">Campaign List</h2>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Content</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for campaign in campaigns %}
+                        <tr>
+                            <td>{{ campaign.name }}</td>
+                            <td>{{ campaign.content }}</td>
+                            <td>{{ campaign.scheduledDate ? campaign.scheduledDate|date('Y-m-d H:i')  : '' }}</td>
+                            <td><a
+                                    class="btn btn-outline-info"
+                                    href="{{ path('campaign_run', {'campaign_id': campaign.id}) }}">
+                                    Run Campaign
+                                </a>
+                                <a
+                                    class="btn btn-outline-primary"
+                                    href="{{ path('campaign_history', {'campaign_id': campaign.id}) }}">
+                                    Run Logs
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
